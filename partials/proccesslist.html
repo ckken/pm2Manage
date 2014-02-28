@@ -1,0 +1,8 @@
+<div class="col-sm-4" ng-repeat="p in data.processes">
+    <h6>{{p.pm2_env.name}}</h6>
+
+		<span class="chart" easypiechart percent="p.memprecent" options="options = {  barColor:'#428bca',  lineWidth:10, lineCap:'butt' }">
+			<span class="percent" ng-bind="p.memprecent"></span>
+		</span>
+    <p>{{p.pm2_env.created_at|dgmdate:1}}</p>
+</div>

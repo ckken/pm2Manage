@@ -1,0 +1,14 @@
+{
+    "name": "Pm2-Watch",
+    "version": "0.3.2",
+    "description": "",
+    "keywords": ["Node.js", "AngularJS", "soket"],
+    "private": true,
+    "scripts": {
+        "start": "node app"
+    },
+    "dependencies": {
+        "socket.io": "*",
+        "request":"*"
+    }
+}

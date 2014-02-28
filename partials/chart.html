@@ -1,0 +1,147 @@
+<div class="col-sm-12">
+
+
+    <div class="row">
+
+        <div class="col-sm-4">
+
+            <h5 class="header">服务器名称</h5>
+
+
+            <div class="content">{{data.system_info.hostname}}</div>
+
+
+            <h5 class="header">服务器运行时间</h5>
+            <div class="content">
+
+                <span class="time">
+                    {{data.system_info.uptime}}
+                             <span class="btn btn-primary btn-xs">s</span>
+                </span>
+                </div>
+
+
+            <h6 class="header">总内存</h6>
+
+            <div class="content">
+                  <span class="time">
+                {{data.monit.total_mem|size}}
+                      </span>
+                </div>
+
+        </div>
+
+
+        <div class="col-sm-4">
+            <h6 class="header">可用内存: {{data.monit.free_mem|size}}</h6>
+            <span class="chart" easypiechart percent="Mempercent"
+                  options="options = { barColor:'#FF530D', lineWidth:10, lineCap:'round' ,scaleColor:false,trackColor:'#888'}">
+                <span class="percent" ng-bind="Mempercent"></span>
+            </span>
+        </div>
+
+
+        <div class="col-sm-4">
+            <h6 class="header">应用程序 {{data.appMem|size}}</h6>
+            <span class="chart" easypiechart percent="appMempercent"
+                  options="options = {  barColor:'#1F8A70',  lineWidth:10, trackColor:'#888',scaleColor:false, lineCap:'round' }">
+                <span class="percent" ng-bind="appMempercent"></span>
+            </span>
+        </div>
+
+    </div>
+
+    <div class="row tablebox">
+
+        <h2 class="title">CPU</h2>
+        <table class="table">
+            <tr>
+                <th>CPU数量</th>
+                <th>参数</th>
+                <th>速度</th>
+                <th>效率</th>
+            </tr>
+            <tr ng-repeat="cpu in data.monit.cpu">
+                <td>{{data.monit.cpu.length}}</td>
+                <td>{{cpu.model}}</td>
+                <td>{{cpu.speed|number}}</td>
+                <td>
+                    <p>{{cpu.times.user|number}} </p>
+
+                    <p>{{cpu.times.nice|number}} </p>
+
+                    <p>{{cpu.times.sys|number}} </p>
+
+                    <p>{{cpu.times.idle|number}} </p>
+
+                    <p>{{cpu.times.irq|number}}
+                </td>
+            </tr>
+        </table>
+
+
+    </div>
+
+
+
+
+
+
+
+    <div class="row">
+        <h2 class="title">网站进程</h2>
+        <div class="col-sm-3" ng-repeat="p in processes">
+            <h6 class="header">{{p.pm2_env.name}}</h6>
+            <span class="chart" easypiechart percent="p.memprecent"
+                  options="options = {  barColor:'#FFFFFF',trackColor:'#888',  lineWidth:10, lineCap:'round',scaleColor:false }">
+                <span class="percent" ng-bind="p.memprecent"></span>
+            </span>
+
+            <div>
+                <ul class="progressitem">
+                    <li><b>runtime</b>{{p.pm2_env.created_at|dgmdate:1}}</li>
+                    <li><b>pid</b>{{p.pid}}</li>
+                    <li><b>id</b>{{p.pm2_env.pm_id}}</li>
+                    <li><b>status</b><span class="{{p.pm2_env.status|online}}">{{p.pm2_env.status}}</span></li>
+                    <li><b>mode</b>{{p.pm2_env.exec_mode}}</li>
+                    <li><b>memory</b>{{p.monit.memory|size}}</li>
+                    <li><b>cpu</b>{{p.monit.cpu}}</li>
+                    <li><b>path</b><a class="label label-default" title="{{p.pm2_env.pm_exec_path}}">路径</a></li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+
+
+
+        <div class="row tablebox">
+            <h2 class="title">网络参数</h2>
+            <table class="table">
+                <tr>
+                    <th>名称</th>
+                    <th>地址</th>
+                    <th>family</th>
+                    <th>internal</th>
+
+                </tr>
+                <tr>
+                    <td>eth0</td>
+                    <td>{{data.monit.interfaces.eth0[0].address}}</td>
+                    <td>{{data.monit.interfaces.eth0[0].family}}</td>
+                    <td>{{data.monit.interfaces.eth0[0].internal}}</td>
+                </tr>
+                <tr>
+                    <td>eth1</td>
+                    <td>{{data.monit.interfaces.eth1[0].address}}</td>
+                    <td>{{data.monit.interfaces.eth1[0].family}}</td>
+                    <td>{{data.monit.interfaces.eth1[0].internal}}</td>
+                </tr>
+            </table>
+        </div>
+
+
+
+</div>
+
+

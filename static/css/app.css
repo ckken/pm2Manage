@@ -1,0 +1,9 @@
+body, button, input, select, textarea, code {
+    font-size: 12px;
+    font-family: microsoft yahei;
+    color: #444;
+}
+
+.footer {
+    text-align: center
+}

@@ -1,0 +1,126 @@
+<div class="col-md-12">
+    <h3>服务器主机名:{{data.system_info.hostname}}</h3>
+    <table class="table table-bordered table-striped">
+        <thead>
+        <tr>
+            <th>名称</th>
+            <th>参数</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <th>服务器运行时间 <br></th>
+            <td>{{data.system_info.uptime|dgmdate}}</td>
+        </tr>
+        <tr>
+            <th>内存资源</th>
+            <td>
+                <h6>总内存 : {{data.monit.total_mem|size}} / 可用内存: {{data.monit.free_mem|size}}</h6>
+
+                <div class="progress progress-striped active">
+                    <div class="progress-bar {{data.monit.total_mem-data.monit.free_mem|progressStyle:data.monit.total_mem}}"
+                         style="width: {{(1-data.monit.free_mem/data.monit.total_mem)*100}}%"><span
+                            class="sr-only">{{data.monit.free_mem}}</span></div>
+                </div>
+
+
+                <h6>应用程序占用内存 {{data.appMem|size}}</h6>
+
+                <div class="progress progress-striped active">
+                    <div class="progress-bar {{data.appMem|progressStyle:data.monit.total_mem}}"
+                         style="width: {{(data.appMem/data.monit.total_mem)*100}}%"><span
+                            class="sr-only">{{data.appMem}}</span></div>
+                </div>
+
+            </td>
+        </tr>
+
+
+        <tr>
+            <th>进程</th>
+            <td>
+                <table class="table table-bordered table-striped">
+                    <tr>
+                        <th>名称</th>
+                        <th>时间</th>
+                        <th>pid</th>
+                        <th>pm_id</th>
+                        <th>status</th>
+                        <th>exec_mode</th>
+
+                        <th>内存</th>
+                        <th style="width:200px">CPU</th>
+                        <th>路径</th>
+                    </tr>
+                    <tr ng-repeat="p in data.processes | orderBy:'pm_id'">
+                        <th>{{p.pm2_env.name}}</th>
+
+                        <th>{{p.pm2_env.created_at|dgmdate:1}}</th>
+                        <th>{{p.pid}}</th>
+                        <th>{{p.pm2_env.pm_id}}</th>
+                        <th><span class="{{p.pm2_env.status|online}}">{{p.pm2_env.status}}</span></th>
+                        <th>{{p.pm2_env.exec_mode}}</th>
+                        <th>{{p.monit.memory|size}}</th>
+                        <th>{{p.monit.cpu}}</th>
+                        <th><a class="label label-primary" title="{{p.pm2_env.pm_exec_path}}">路径</a> </th>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+
+
+        <tr>
+            <th>Cpu参数</th>
+            <td>
+                <table class="table table-bordered table-striped">
+                    <tr ng-repeat="cpu in data.monit.cpu">
+
+                        <td>CPU数量</td>
+                        <td>{{data.monit.cpu.length}}</td>
+
+                        <td>参数</td>
+                        <td>{{cpu.model}}</td>
+                        <td>速度</td>
+                        <td>{{cpu.speed|number}}</td>
+                        <td>效率</td>
+                        <td>{{cpu.times.user|number}} / {{cpu.times.nice|number}} / {{cpu.times.sys|number}} /
+                            {{cpu.times.idle|number}} / {{cpu.times.irq|number}}
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+
+        <tr>
+            <th>网络参数</th>
+            <td>
+
+                <table class="table table-bordered table-striped">
+                    <tr>
+                        <th>名称</th>
+                        <th>地址</th>
+                        <th>family</th>
+                        <th>internal</th>
+
+                    </tr>
+                    <tr>
+                        <td>eth0</td>
+                        <td>{{data.monit.interfaces.eth0[0].address}}</td>
+                        <td>{{data.monit.interfaces.eth0[0].family}}</td>
+                        <td>{{data.monit.interfaces.eth0[0].internal}}</td>
+                    </tr>
+                    <tr>
+                        <td>eth1</td>
+                        <td>{{data.monit.interfaces.eth1[0].address}}</td>
+                        <td>{{data.monit.interfaces.eth1[0].family}}</td>
+                        <td>{{data.monit.interfaces.eth1[0].internal}}</td>
+                    </tr>
+                </table>
+
+
+            </td>
+        </tr>
+
+        </tbody>
+    </table>
+</div>
