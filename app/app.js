@@ -1,39 +1,26 @@
 var CW = {};
-//angular.module('CrownApp', ['CrownApp.controllers','CrownApp.filters','CrownApp.services','CrownApp.directives','hmTouchevents'])
-angular.module('CrownApp', ['ngRoute','CrownApp.controllers', 'CrownApp.services', 'CrownApp.filters','CrownApp.directive','easypiechart','tools'])
+angular.module('VcoApp', ['ngRoute','VcoApp.controllers', 'VcoApp.services', 'VcoApp.filters','VcoApp.directive','easypiechart','tools'])
     .config(['$routeProvider', function ($routeProvider) {
         $routeProvider
 
-            .when('/main', {
-                templateUrl: 'partials/main.html?'+Math.random(),
-                controller: 'MainCtrl'
-            })
-
             .when('/', {
-                templateUrl: 'partials/chart.html?'+Math.random(),
+                templateUrl: 'partials/chart.html',
                 controller: 'ChartCtrl'
             })
-
-
-            /*    .when('/:action/list', {
-             templateUrl: 'partials/list.html',
-             controller: 'ListCtrl'
-             })
-             .when('/:action/create', {
-             templateUrl: 'partials/create.html',
-             controller: 'CreateCtrl'
-             })*/
             .otherwise({
                 redirectTo: '/'
             });
     }])
     .run(['$rootScope', '$route', '$http', function ($rootScope, $route, $http) {
-        CW = $rootScope;
-        $rootScope.global = {
-            //weatherData :[],
-        }
-        /*  $rootScope.global.prePercent = relocationService.prePercent();
-         $rootScope.global.postPercent = relocationService.postPercent();
-         $rootScope.global.Percent = relocationService.Percent();*/
+        CW.url='http://112.124.64.160:9615';
+        //CW.socket:'http://www.wvovo.com:999';
+        CW.socket='http://127.0.0.1:999';
+
+        $rootScope.opt = [
+            {barColor:'#FF530D', lineWidth:10 ,trackColor:'#888', lineCap:'round' ,scaleColor:false},
+            {barColor:'#1F8A70',  lineWidth:10, trackColor:'#888',lineCap:'round' ,scaleColor:false},
+            {barColor:'#FFFFFF', lineWidth:10, trackColor:'#888', lineCap:'round',scaleColor:false}
+        ]
+
 
     }]);

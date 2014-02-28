@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8">
     <title>PM2 API of Nstorm - Power By @KenZR</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
     <link href="static/css/app.css" rel="stylesheet" type="text/css">
 </head>
@@ -11,18 +12,19 @@
     <div class="row">
         <div ng-view></div>
     </div>
-    <footer class="footer">pm2Watch Version 0.3.2 <a href="https://github.com/ckken" target="_blank">Fork</a></footer>
+    <footer class="footer">
+        <b>pm2Manage</b> Dependency by angular nodejs pm2 / power by Ken / email : ckken@qq.com
+        <a class="btn btn-primary btn-xs" href="https://github.com/ckken" target="_blank">Follow</a>
+        <a class="btn btn-default btn-xs" href="./index.html">New version</a>
+    </footer>
 </div>
-<!--<script src="lib/bootstrap/js/bootstrap.min.js"></script>-->
 <script src="lib/socket.js"></script>
 <script src="lib/angular/angular.min.js"></script>
 <script src="lib/angular/angular-route.min.js"></script>
-<script src="app/services.js"></script>
-<script src="app/filters.js"></script>
-<script src="app/controllers.js"></script>
-<script src="app/directive.js"></script>
-<script src="lib/angular/angular.easypiechart.js"></script>
-
-<script src="app/main.js"></script>
+<script src="lib/main/services.js"></script>
+<script src="lib/main/filters.js"></script>
+<script src="lib/main/controllers.js"></script>
+<script src="lib/main/directive.js"></script>
+<script src="lib/main/app.js"></script>
 </body>
 </html>
