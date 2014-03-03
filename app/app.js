@@ -1,4 +1,11 @@
 var CW = {};
+
+angular.module('ie7support', []).config(function($sceProvider) {
+// Completely disable SCE to support IE7.
+    $sceProvider.enabled(false);
+});
+
+
 angular.module('VcoApp', ['ngRoute','VcoApp.controllers', 'VcoApp.services', 'VcoApp.filters','VcoApp.directive','easypiechart','tools'])
     .config(['$routeProvider', function ($routeProvider) {
         $routeProvider
@@ -15,6 +22,7 @@ angular.module('VcoApp', ['ngRoute','VcoApp.controllers', 'VcoApp.services', 'Vc
         CW.url='http://112.124.64.160:9615';
         //CW.socket='http://www.wvovo.com:999';
         CW.socket='http://127.0.0.1:999';
+        CW.scope = $rootScope;
 
         $rootScope.opt = [
             {barColor:'#FF530D', lineWidth:10 ,trackColor:'#888', lineCap:'round' ,scaleColor:false},
@@ -24,3 +32,5 @@ angular.module('VcoApp', ['ngRoute','VcoApp.controllers', 'VcoApp.services', 'Vc
 
 
     }]);
+
+angular.bootstrap(document, ['VcoApp']);

@@ -7,18 +7,19 @@
     <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
     <link href="static/css/chart.css" rel="stylesheet" type="text/css">
 </head>
-<body ng-app="VcoApp">
-<div class="container">
+<body>
+<div  class="container">
     <div class="row">
         <div ng-view></div>
     </div>
-    <footer class="footer">
+    <div class="footer">
         <b>pm2Manage</b> Dependency by angular nodejs pm2 / power by Ken / email : ckken@qq.com
         <a class="btn btn-primary btn-xs" href="https://github.com/ckken" target="_blank">Follow</a>
         <a class="btn btn-default btn-xs" href="./main.html">Old version</a>
-    </footer>
-</div>
+    </div>
+</div >
 <!--<script src="lib/bootstrap/js/bootstrap.min.js"></script>-->
+
 <script src="lib/socket.js"></script>
 <script src="lib/angular/angular.min.js"></script>
 <script src="lib/angular/angular-route.min.js"></script>
@@ -29,5 +30,14 @@
 <script src="app/directive.js"></script>
 <script src="app/tools.js"></script>
 <script src="app/app.js"></script>
+
+
+<!--[if lt IE 9]>
+<script src="lib/html5/html5shim.js"></script>
+<script src="lib/html5/respond.min.js"></script>
+<script src="lib/html5/excanvas.compiled.js"></script>
+<script src="lib/html5/excanvas.run.js"></script>
+<![endif]-->
+
 </body>
 </html>
