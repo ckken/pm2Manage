@@ -5,6 +5,7 @@ angular.module('VcoApp.controllers', [])
         socket.on('watchPm2', function (data) {
             var appMem = 0;
             $scope.data = data;
+
             var totalMem = $scope.data.monit.total_mem;
 
             angular.forEach(data.processes, function (v, k) {
