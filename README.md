@@ -2,6 +2,7 @@
 
 pm2 manage  是nodejs的服务器管理工具  
 [demo](http://watch.wvovo.com/ "")  
+[问题讨论，bug跟踪](http://js.wvovo.com/tags/pm2manage)
 目前实现了期监控功能  
 ##模块依赖
 + angularjs  
